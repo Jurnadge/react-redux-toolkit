@@ -1,4 +1,3 @@
-import { current } from "@reduxjs/toolkit";
 import React from "react";
 
 export default function PaginationCuy({
@@ -19,8 +18,8 @@ export default function PaginationCuy({
           <button
             className={
               page == currentPage
-                ? "bg-amber-500 px-2 rounded-md bg-sky-500 flex-cols gap-2 mt-5 mx-1"
-                : "bg-sky-500 px-2 rounded-md bg-sky-500 flex-cols gap-2 mt-5 mx-1"
+                ? "bg-amber-500 px-2 bg-sky-500 border border-slate-800 mx-[1px] mt-5"
+                : "bg-sky-500 px-2 bg-sky-500 border border-slate-800 mx-[1px] mt-5"
             }
             key={index}
             onClick={() => setCurrentPage(page)}

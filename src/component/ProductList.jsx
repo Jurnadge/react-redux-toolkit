@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../redux/features/productSlice";
 import { useEffect } from "react";
-import { Pagination } from "flowbite-react";
+import { ProgressBar, MagnifyingGlass } from "react-loader-spinner";
 import PaginationCuy from "../lib/Pagination";
 
 const ProductList = () => {
@@ -14,8 +14,9 @@ const ProductList = () => {
     dispatch(fetchProduct());
   }, [dispatch]);
 
+  // pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage] = useState(4);
+  const [productPerPage] = useState(3);
 
   // get current images
   const indexOfLastProduct = currentPage * productPerPage;
@@ -25,13 +26,25 @@ const ProductList = () => {
     indexOfLastProduct
   );
 
-  //get page
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
     <>
-      <div className="w-full mt-10 mb-10">
+      <div className="w-full mt-5">
+        <h1 className="text-center text-2xl font-bold">PRODUCT LIST</h1>
+
+        {product.loading && (
+          <div className="flex justify-center">
+            <ProgressBar
+              height="80"
+              width="80"
+              ariaLabel="progress-bar-loading"
+              wrapperStyle={{}}
+              wrapperClass="progress-bar-wrapper"
+              borderColor="#F4442E"
+              barColor="#51E5FF"
+            />
+          </div>
+        )}
+
         {!product?.loading && product?.products?.products?.length ? (
           <div className="mx-10">
             {currentProducts?.map((item, index) => (
@@ -68,7 +81,7 @@ const ProductList = () => {
             ))}
           </div>
         ) : null}
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-5">
           <PaginationCuy
             totalProducts={product?.products?.products?.length}
             productPerPage={productPerPage}
