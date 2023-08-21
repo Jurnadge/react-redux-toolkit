@@ -1,0 +1,15 @@
+redux
+npm i react-redux
+npm i redux
+npm i redux-logger
+npm i @reduxjs/toolkit
+
+npm i react-router-dom
+npm i axios
+
+for loading
+npm i react-loader-spinner
+
+
+
+tailwind / flowbite
