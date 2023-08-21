@@ -6,6 +6,7 @@ import { ProgressBar, MagnifyingGlass } from "react-loader-spinner";
 import PaginationCuy from "../lib/Pagination";
 
 const ProductList = () => {
+  // get data from state redux
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products);
   console.log("ini product", product?.products.products);
