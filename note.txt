@@ -13,3 +13,6 @@ npm i react-loader-spinner
 
 
 tailwind / flowbite
+
+lazy load image
+npm i --save react-lazy-load-image-component

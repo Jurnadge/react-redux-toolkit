@@ -47,8 +47,8 @@ export default function PaginationCuy({
       <button
         className={
           page === currentPage
-            ? "bg-amber-500 px-2 bg-sky-500 border border-slate-800 mx-[1px] mt-5"
-            : "bg-sky-500 px-2 bg-sky-500 border border-slate-800 mx-[1px] mt-5"
+            ? "bg-amber-500 px-2 border border-slate-800 mx-[1px] mt-5"
+            : "px-2 bg-sky-500 border border-slate-800 mx-[1px] mt-5"
         }
         key={page}
         onClick={() => setCurrentPage(page)}
