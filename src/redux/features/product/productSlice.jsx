@@ -49,6 +49,22 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  "product/updateProduct",
+  async (id) => {
+    try {
+      const response = await axios.put(
+        `https://64e426f2c55563802912d840.mockapi.io/api/v1/product/products/${id}`,
+        formUpdate
+      );
+      const updateProduct = response.data;
+      return updateProduct;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "product",
   initialState,
@@ -98,6 +114,19 @@ const productSlice = createSlice({
     });
 
     //update product
+    builder.addCase(updateProduct.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateProduct.fulfilled, (state, action) => {
+      state.loading = false;
+      state.products = state.products.map((item) =>
+        item.id === action.payload.id ? action.payload : item
+      );
+    });
+    builder.addCase(updateProduct.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
   },
 });
 

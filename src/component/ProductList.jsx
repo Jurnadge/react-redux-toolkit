@@ -10,6 +10,7 @@ import PaginationCuy from "../lib/Pagination";
 import CreateProductModal from "./modals/CreateProductModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import UpdateProductModal from "./modals/UpdateProductModal";
 
 const ProductList = () => {
   // get data from state redux
@@ -17,6 +18,7 @@ const ProductList = () => {
   const product = useSelector((state) => state.products);
   console.log("ini product", product.products);
 
+  // re-render data
   useEffect(() => {
     dispatch(fetchProduct());
   }, [dispatch]);
@@ -35,6 +37,10 @@ const ProductList = () => {
 
   //modal createProduct
   const [showModalCreate, setShowModalCreate] = useState(false);
+
+  //modal updateProduct
+  const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const [productId, setProductId] = useState();
 
   return (
     <>
@@ -95,7 +101,13 @@ const ProductList = () => {
                     <br />
 
                     <div className="">
-                      <button className="me-5 py-1 px-2 bg-sky-700 rounded-md">
+                      <button
+                        className="me-5 py-1 px-2 bg-sky-700 rounded-md"
+                        onClick={() => {
+                          setShowModalUpdate(true);
+                          setProductId(item.id);
+                        }}
+                      >
                         Edit
                       </button>
                       <button
@@ -140,6 +152,11 @@ const ProductList = () => {
       <CreateProductModal
         show={showModalCreate}
         showProductModal={setShowModalCreate}
+      />
+      <UpdateProductModal
+        show={showModalUpdate}
+        showUpdateModal={setShowModalUpdate}
+        id={productId}
       />
     </>
   );
